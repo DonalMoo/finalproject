@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Waltons Online</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<header class="navbar navbar-inverse">
+		<div class="navbar-inner">
+			<div class="container"> 
+				<%= link_to "Waltons Music Online Tutorials", home_index_path, id: "logo" %>
+				<ul class="nav navbar-nav navbar-right">
+					<li><%= link_to "Home", home_index_path %></li>
+					<li><%= link_to "Tutorials", tutorials_path %></li>
+					<%# check if user is signed in and has a profile before showing orders%>
+					<%# if user_signed_in? && current_user.profile.present? %>
+					<li><%#= link_to "My Orders", profile_orders_path(Profile.find_by_user_id(current_user.id)) %></li>
+					<%# end %>
+					<% if user_signed_in? %>
+					<li><%= link_to 'Logout' , destroy_user_session_path, :method => :delete%></li>
+					<% else %>
+					<li><%= link_to 'Sign in' , new_user_session_path %></li>
+					<li><%= link_to 'Register' , new_user_registration_path %></li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+	</header>
+<div class="container">
+<%= yield %>
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><% alert %></p>
+
+		<%# if user is signed in, show their details and logout option, at bottom of each page %>
+		<% if user_signed_in? %>
+			<div> Signed in as: <%= current_user.email %>
+				(<%= link_to 'Logout' , destroy_user_session_path, :method => :delete%>)
+			</div>
+		<% end %>
+		</div>
+	</body>
+</html>
