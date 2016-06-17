@@ -5,10 +5,10 @@ gem 'devise'
 gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
 gem 'rails-observers'
-
+gem 'sass', '~> 3.4.18'
 # gem 'sqlite3'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 5.0.1'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -25,7 +25,9 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-sass', '~> 3.3.6'
+
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 # using postgres db for deployment to heroku
 group :production do

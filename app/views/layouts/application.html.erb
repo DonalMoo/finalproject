@@ -10,25 +10,45 @@
 	<header class="navbar navbar-inverse">
 		<div class="navbar-inner">
 			<div class="container"> 
-				<%= link_to "Waltons Music Online Tutorials", home_index_path, id: "logo" %>
-				<ul class="nav navbar-nav navbar-right">
-					<li><%= link_to "Home", home_index_path %></li>
-					<li><%= link_to "Tutorials", tutorials_path %></li>
-					<%# check if user is signed in and has a profile before showing orders%>
-					<%# if user_signed_in? && current_user.profile.present? %>
-					<li><%#= link_to "My Orders", profile_orders_path(Profile.find_by_user_id(current_user.id)) %></li>
-					<%# end %>
-					<% if user_signed_in? %>
-					<li><%= link_to 'Logout' , destroy_user_session_path, :method => :delete%></li>
-					<% else %>
-					<li><%= link_to 'Sign in' , new_user_session_path %></li>
-					<li><%= link_to 'Register' , new_user_registration_path %></li>
-					<% end %>
-				</ul>
+				<div class="row">
+					<div class="col-md-12">
+					<%= link_to "Waltons Music Online Tutorials", home_index_path, id: "logo" %>
+						<ul class="nav navbar-nav">
+						<li><%= link_to "Home", home_index_path %></li>
+						<li><%= link_to "Tutorials", tutorials_path %></li>
+						<%# check if user is signed in and has a profile before showing orders%>
+						<%# if user_signed_in? && current_user.profile.present? %>
+						<li><%#= link_to "My Orders", profile_orders_path(Profile.find_by_user_id(current_user.id)) %></li>
+						<%# end %>
+						</ul>	
+					<ul class="nav navbar-nav navbar-right">
+						<% if user_signed_in? %>
+						<li><%= link_to destroy_user_session_path, :method => :delete do %>
+						<i class="glyphicon glyphicon-log-out"></i> Sign out [<%= current_user.email %>]
+							<% end %>
+						</li>
+						<% else %>
+						<li><%= link_to new_user_session_path do %>
+							<i class="glyphicon glyphicon-log-in"></i> Sign in
+							<% end %>
+						</li>
+						<li><%= link_to new_user_registration_path do %>
+							<i class="glyphicon glyphicon-user"></i> Create Account
+							<% end %>
+						</li>
+							
+						<% end %>
+					</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	</header>
 <div class="container">
+	<div class="col-xs-3">
+        </div>
+        <div class="col-xs-9">
+        </div>
 <%= yield %>
 	<p class="notice"><%= notice %></p>
 	<p class="alert"><% alert %></p>

@@ -1,29 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Tutorials</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Image url</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  <div class="container">
+        <div class="row">
+          <h1 class="text-centre">Tutorials</h1>
+        </div>
+    </div>
+    
     <% @tutorials.each do |tutorial| %>
-      <tr>
-        <td><%= tutorial.description %></td>
-        <td><%= tutorial.price %></td>
-        <td><%= tutorial.image_url %></td>
-        <td><%= link_to 'Show', tutorial %></td>
-        <td><%= link_to 'Edit', edit_tutorial_path(tutorial) %></td>
-        <td><%= link_to 'Destroy', tutorial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-3">
+            <h3><%= tutorial.title %></h3>
+            <%= image_tag(tutorial.image_url, :class => "list_image") %>
+          </div>
+          <div class="col-xs-9">
+            <%= sanitize(tutorial.description) %>
+              <h4><%= number_to_currency(tutorial.price, unit: "€") %></h4> 
+              <h4>Video Privew</h4>  
+              <%= video_tag(tutorial.preview_url, :size => "320x240", :controls => true) %>
+
+              <td><%= link_to 'Show', tutorial %></td>
+              <td><%= link_to 'Edit', edit_tutorial_path(tutorial) %></td>
+              <td><%= link_to 'Destroy', tutorial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </div>
+          </div>
+      </div>
     <% end %>
   </tbody>
+  </div>
+  </div>
 </table>
 
 <br>
