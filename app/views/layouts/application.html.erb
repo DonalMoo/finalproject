@@ -52,13 +52,6 @@
 <%= yield %>
 	<p class="notice"><%= notice %></p>
 	<p class="alert"><% alert %></p>
-
-		<%# if user is signed in, show their details and logout option, at bottom of each page %>
-		<% if user_signed_in? %>
-			<div> Signed in as: <%= current_user.email %>
-				(<%= link_to 'Logout' , destroy_user_session_path, :method => :delete%>)
-			</div>
-		<% end %>
 		</div>
 	</body>
 </html>

@@ -23,11 +23,7 @@ html {
 	overflow-y: scroll;
 }
 
-body {
-	padding-top: 40px;
-}
-
-section{
+section {
 	overflow: auto;
 }
 
@@ -66,7 +62,7 @@ margin-bottom: 10px;
 
 body{
     margin: 0;
-    padding-top: 10px;
+    padding-top: 0px;
 }
 
 #td {
@@ -75,6 +71,10 @@ body{
 
 #th {
   .padding: 15px;
+}
+
+.navbar {
+    margin-top: 0;
 }
 
 
