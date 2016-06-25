@@ -1,3 +1,4 @@
+require 'coupon_code'
 class TutorialsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :ensure_admin, :only => [:edit, :destroy]
@@ -9,9 +10,19 @@ class TutorialsController < ApplicationController
     @tutorials = Tutorial.all
   end
 
+  def create_code
+    coupon = CouponCode.instance
+    code = CouponCode::Generator.generate
+    puts(code)
+  end
+
   def ensure_admin
-    unless current_user && current_user.admin?
-      render :text => "Access Error Message" , status => :unathorized
+    if user_signed_in? && current_user.admin?
+      return true
+    else
+      flash[:notice] = "Action not allowed"
+      redirect_to root_path
+      return false
     end
   end
 

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @code.code %>
+</p>
+
+<p>
+  <strong>Redeemed at:</strong>
+  <%= @code.redeemed_at %>
+</p>
+
+<p>
+  <strong>Campaign:</strong>
+  <%= @code.campaign_id %>
+</p>
+
+<%= link_to 'Edit', edit_code_path(@code) %> |
+<%= link_to 'Back', codes_path %>

@@ -7,6 +7,7 @@ gem 'rails', '4.2.4'
 gem 'rails-observers'
 gem 'sass', '~> 3.4.18'
 # gem 'sqlite3'
+gem 'coupon_code', '~> 0.0.2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.1'
 # Use Uglifier as compressor for JavaScript assets

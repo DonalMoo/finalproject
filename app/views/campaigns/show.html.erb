@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+  <div class="row">
+    <div class="col-md-12">
+      <h1>
+          <strong>Campaign:</strong>
+            <%= @campaign.title %>
+      </h1>
+    </div>
+  </div>
+  <h3>Codes:</h3>
+  
+  <table class="code-list">
+  <thead>
+  <tr>
+    <th>Code</th>
+    <th>Redeem</th>
+  </tr>
+  </thead>
+  <% campaign.codes.each do |code| %>
+    <tr>
+      <td><code class="<%= 'redeemed' if code.redeemed? %>"><%= code.code %></code></td>
+      <td><%= time_ago_in_words code.redeemed_at if code.redeemed? %></td>
+    </tr>
+  <% end %>
+</table>
+<h3>Redeem</h3>
+
+<%= form_for(campaign, url: redeem_code_campaign_path(campaign), method: :put) do |f| %>
+  <div class="field">
+    <%= text_field_tag :code %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Home', root_path %>

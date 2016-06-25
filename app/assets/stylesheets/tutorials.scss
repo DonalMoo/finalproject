@@ -8,7 +8,18 @@
     height: 170px;
   }
 
- .show_image {
-    width:  200px;
-    height: 200px;
-  }
+  .jumbotron {
+    background-color:black !important; 
+    color: grey !important;
+}
+
+p {
+    padding-top: 1cm;
+}
+
+.sidebar {
+	  padding: 20px;
+    background-color:black !important; 
+    color: grey;
+	
+}

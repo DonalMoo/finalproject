@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615202706) do
+ActiveRecord::Schema.define(version: 20160625174915) do
+
+  create_table "campaigns", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "max_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "codes", force: :cascade do |t|
+    t.string   "code"
+    t.datetime "redeemed_at"
+    t.integer  "campaign_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "codes", ["campaign_id"], name: "index_codes_on_campaign_id"
 
   create_table "profiles", force: :cascade do |t|
     t.string   "firstname"
