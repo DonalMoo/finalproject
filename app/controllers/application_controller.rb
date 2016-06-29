@@ -6,4 +6,9 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
   	"/signedinuserprofile"
   end
+
+  def index
+  	@profile = Profile.find_by_user_id(current_user.id)
+  end
+
 end

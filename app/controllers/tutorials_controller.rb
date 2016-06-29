@@ -8,13 +8,14 @@ class TutorialsController < ApplicationController
   # GET /tutorials.json
   def index
     @tutorials = Tutorial.all
+    @campaigns = Campaign.all
+    @campaign = Campaign.find_by_id(1) 
   end
 
-  def create_code
-    coupon = CouponCode.instance
-    code = CouponCode::Generator.generate
-    puts(code)
+  def set_campaign
+    @campaign = Campaign.find(params[:id])
   end
+
 
   def ensure_admin
     if user_signed_in? && current_user.admin?
@@ -29,6 +30,7 @@ class TutorialsController < ApplicationController
   # GET /tutorials/1
   # GET /tutorials/1.json
   def show
+    render locals: { campaign: @campaign}
   end
 
   # GET /tutorials/new
@@ -88,6 +90,6 @@ class TutorialsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tutorial_params
-      params.require(:tutorial).permit(:title, :description, :price, :image_url, :preview_url)
+      params.require(:tutorial).permit(:title, :description, :price, :image_url, :preview_url, :campaign)
     end
 end

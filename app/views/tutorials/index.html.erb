@@ -1,50 +1,57 @@
-<p id="notice"><%= notice %></p>
-        <div class="row">
-          <div class="col-xs-2">
-            <div class="sidebar">
+    <div class="row">
+      <div class="col-xs-2">
+        <div class="sidebar">
             <h3>Tutorials</h3>
-            <ul>
-              <li>Bodhran</li>
-              <li>Tin Whistle</li>
-              <li>Tenor Banjo</li>
-              <li>Mandolin</li>
-              <li>Irish Guitar</li>
-            </ul>
-          </div>
-          </div>
-          <div class ="col-md-10">
-            <div class="jumbotron">
-              <h1>Tutorials</h1>
-              <p>Choose from a wide range of tutorials available, buy or enter your voucher code to gain access to full videos</p>
-            </div>
-          </div>
+              <ul>
+                <li>Bodhran</li>
+                <li>Tin Whistle</li>
+                <li>Tenor Banjo</li>
+                <li>Mandolin</li>
+                <li>Irish Guitar</li>
+              </ul>
         </div>
-            <% @tutorials.each do |tutorial| %>
+      </div>
+      <div class ="col-md-10">
+          <div class="jumbotron">
+            <h1>Tutorials</h1>
+                <h4>Choose from a wide range of tutorials available, buy or enter your voucher code to gain access to full videos</h4>
+          </div>
+      </div>
+    </div>
+              <% @tutorials.each do |tutorial| %>
                   <div class="row">
-                  <div class="col-md-2">
-                  </div>
                     <div class="col-md-2">
-                      <h3><%= tutorial.title %></h3>
-                        <%= image_tag(tutorial.image_url, :class => "list_image") %>
                     </div>
-                  <div class="col-md-4">
-                    <p><%= tutorial.description %></p>
-                      <h4><%= number_to_currency(tutorial.price, unit: "€") %></h4>
-                        <div class="btn btn-default btn-xs">
-                          Add to account
-                        </div> 
+                      <div class="col-md-2">
+                        <h3><%= tutorial.title %></h3>
+                          <%= image_tag(tutorial.image_url, :class => "list_image") %>
+                      </div>
+                    <div class="col-md-4">
+                      <p><%= tutorial.description %></p>
+                        <h4>Buy now - <%= number_to_currency(tutorial.price, unit: "€") %></h4>
+                          <div class="btn btn-default btn-xs">Add to account
+                          </div>
+                          <h4>Enter voucher number to add to account</h4>  
+                          <%= form_for(@campaign, url: redeem_code_campaign_path(@campaign), method: :put) do |f| %>
+                          <div class="field">
+                          <%= text_field_tag :code %>
+                          </div>
+                         <div class="actions">
+                          <%= f.submit "Redeem Code" %><p id="notice"><%= notice %></p>
+                         </div>
+                          <% end %>
+                      </div>
+                      <div class="col-md-4"> 
+                        <h4>Video Preview</h4>  
+                          <%= video_tag(tutorial.preview_url, :size => "320x240", :controls => true) %>
+                      </div>
+                    <% if current_user.admin? %>
+                    <td><%= link_to 'Show', tutorial %></td>
+                    <td><%= link_to 'Edit', edit_tutorial_path(tutorial) %></td>
+                    <td><%= link_to 'Destroy', tutorial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <% end %>
                     </div>
-                    <div class="col-md-4"> 
-                      <h4>Video Privew</h4>  
-                        <%= video_tag(tutorial.preview_url, :size => "320x240", :controls => true) %>
-                    </div>
-                  <% if current_user.admin? %>
-                  <td><%= link_to 'Show', tutorial %></td>
-                  <td><%= link_to 'Edit', edit_tutorial_path(tutorial) %></td>
-                  <td><%= link_to 'Destroy', tutorial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  <% end %>
-                  </div>
-             <% end %>
-<% if current_user.admin? %>
-<%= link_to 'New Tutorial', new_tutorial_path %>
-<% end %>
+               <% end %>
+  <% if current_user.admin? %>
+  <%= link_to 'New Tutorial', new_tutorial_path %>
+  <% end %>

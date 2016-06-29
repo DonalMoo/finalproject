@@ -49,7 +49,7 @@ class CampaignsController < ApplicationController
 
     msg << 'Code was successfully redeemed.' if msg.empty?
 
-    redirect_to @campaign, notice: msg.join(', ')
+    redirect_to :back, notice: msg.join(', ')
   end
 
   def ensure_admin
