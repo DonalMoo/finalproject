@@ -16,6 +16,7 @@
 						<ul class="nav navbar-nav">
 							<li><%= link_to "Home", home_index_path %></li>
 							<li><%= link_to "Tutorials", tutorials_path %></li>
+							
 
 							<% if user_signed_in? %>
 							<li><%= link_to "My Profile", signedinuserprofile_path %></li>
@@ -27,6 +28,7 @@
 
 						</ul>	
 					<ul class="nav navbar-nav navbar-right">
+							<li><%= link_to "Contact Us", contact_path %></li>
 							<% if user_signed_in? %>
 							<li><%= link_to destroy_user_session_path, :method => :delete do %>
 								<i class="glyphicon glyphicon-log-out"></i> Sign out [<%= current_user.email %>]
@@ -42,6 +44,8 @@
 							<% end %>
 							</li>							
 							<% end %>
+
+
 					</ul>
 					</div>
 				</div>

@@ -19,6 +19,8 @@
     <%= f.label :lastname %><br>
     <%= f.text_field :lastname %>
   </div>
+
+  <% if current_user.admin? %>
     <div class="field">
     <%= f.label :has_tin %><br>
     <%= f.radio_button :has_tin, "0" %> No
@@ -29,6 +31,8 @@
     <%= f.radio_button :has_bod, "0" %> No
     <%= f.radio_button :has_bod, "1" %> Yes
   </div>
+  <% end %>
+
   <div class="field">
     <%= f.hidden_field :user_id %>
   </div>

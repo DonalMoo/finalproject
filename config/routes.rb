@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   get '/signedinuserprofile' => 'profiles#signedinuserprofile'
   root :to => 'home#index'
 
+  #code taken from https://matharvard.ca/posts/2014/jan/11/contact-form-in-rails-4/
+  get 'contact', to: 'messages#new', as: 'contact'
+  post 'contact', to: 'messages#create'
+
   resources :tutorials
 
   resources :campaigns, only: [:index, :create, :show, :redeem_code] do
