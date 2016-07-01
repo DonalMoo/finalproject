@@ -52,7 +52,7 @@ class CampaignsController < ApplicationController
     if msg.empty?
       msg << 'Code was successfully redeemed. You now have access to this tutorial' 
 
-      @profile.update(has_bod: '1') 
+      @profile.update(:has_bod => true ) 
 
       redirect_to signedinuserprofile_path, notice: msg.join(' ')
     else
