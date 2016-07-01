@@ -27,29 +27,30 @@
 
 						</ul>	
 					<ul class="nav navbar-nav navbar-right">
-						<% if user_signed_in? %>
-						<li><%= link_to destroy_user_session_path, :method => :delete do %>
-						<i class="glyphicon glyphicon-log-out"></i> Sign out [<%= current_user.email %>]
-						<% end %>
-						</li>
+							<% if user_signed_in? %>
+							<li><%= link_to destroy_user_session_path, :method => :delete do %>
+								<i class="glyphicon glyphicon-log-out"></i> Sign out [<%= current_user.email %>]
+							<% end %>
+							</li>
 						<% else %>
-						<li><%= link_to new_user_session_path do %>
-							<i class="glyphicon glyphicon-log-in"></i> Sign in
+							<li><%= link_to new_user_session_path do %>
+								<i class="glyphicon glyphicon-log-in"></i> Sign in
 							<% end %>
-						</li>
-						<li><%= link_to new_user_registration_path do %>
-							<i class="glyphicon glyphicon-user"></i> Create Account
+							</li>
+							<li><%= link_to new_user_registration_path do %>
+								<i class="glyphicon glyphicon-user"></i> Create Account
 							<% end %>
-						</li>							
-						<% end %>
+							</li>							
+							<% end %>
 					</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</header>
-	<div class="container">
+		<div class="container">
 	<%= yield %>
-	</body>
-</html>
+	<%= render 'layouts/footer' %>
+		</body>
+	</html>
 </div>

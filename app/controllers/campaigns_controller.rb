@@ -29,10 +29,12 @@ class CampaignsController < ApplicationController
     end
   end
 
+# taken from coupon code git documentation - https://github.com/baxang/coupon-code
+
   def redeem_code
+    @profile = Profile.find_by_user_id(current_user.id)
     msg = []
     user_code = params[:code]
-
     code = @campaign.codes.find_by(code: user_code)
 
     unless code
@@ -47,9 +49,15 @@ class CampaignsController < ApplicationController
       end
     end
 
-    msg << 'Code was successfully redeemed.' if msg.empty?
+    if msg.empty?
+      msg << 'Code was successfully redeemed. You now have access to this tutorial' 
 
-    redirect_to :back, notice: msg.join(', ')
+      @profile.update(has_bod: '1') 
+
+      redirect_to signedinuserprofile_path, notice: msg.join(' ')
+    else
+      redirect_to tutorials_path, notice: msg.join(' ')
+    end
   end
 
   def ensure_admin

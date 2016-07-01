@@ -19,6 +19,16 @@
     <%= f.label :lastname %><br>
     <%= f.text_field :lastname %>
   </div>
+    <div class="field">
+    <%= f.label :has_tin %><br>
+    <%= f.radio_button :has_tin, "0" %> No
+    <%= f.radio_button :has_tin, "1" %> Yes
+  </div>
+      <div class="field">
+    <%= f.label :has_bod %><br>
+    <%= f.radio_button :has_bod, "0" %> No
+    <%= f.radio_button :has_bod, "1" %> Yes
+  </div>
   <div class="field">
     <%= f.hidden_field :user_id %>
   </div>

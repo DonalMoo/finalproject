@@ -18,26 +18,31 @@
           </div>
       </div>
     </div>
+
               <% @tutorials.each do |tutorial| %>
                   <div class="row">
                     <div class="col-md-2">
                     </div>
+
                       <div class="col-md-2">
                         <h3><%= tutorial.title %></h3>
                           <%= image_tag(tutorial.image_url, :class => "list_image") %>
                       </div>
+
                     <div class="col-md-4">
                       <p><%= tutorial.description %></p>
+                      
                         <h4>Buy now - <%= number_to_currency(tutorial.price, unit: "€") %></h4>
                           <div class="btn btn-default btn-xs">Add to account
                           </div>
-                          <h4>Enter voucher number to add to account</h4>  
+                          <h4>Enter voucher number to add to account</h4>
+                          <h3 id="notice"><%= notice %></h3>  
                           <%= form_for(@campaign, url: redeem_code_campaign_path(@campaign), method: :put) do |f| %>
                           <div class="field">
                           <%= text_field_tag :code %>
                           </div>
                          <div class="actions">
-                          <%= f.submit "Redeem Code" %><p id="notice"><%= notice %></p>
+                          <%= f.submit "Redeem Code" %>
                          </div>
                           <% end %>
                       </div>
