@@ -35,6 +35,7 @@
       <div class="col-md-6">
         <% if @profile.has_tin %>
           <h3> Tin whistle Tutorial </h3>
+          <%= video_tag('https://s3-eu-west-1.amazonaws.com/waltvideos1/Waltons+tin+whistle.mp4', :type => "video/mp4", :size => "720x480", :controls => true) %>
         <% end %>
       </div>
     </div>

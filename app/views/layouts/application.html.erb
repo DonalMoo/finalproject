@@ -26,6 +26,10 @@
 							<li><%= link_to "Code Management", code_mngr_index_path %></li>
 							<% end %>
 
+							<% if user_signed_in? && current_user.admin? %>
+							<li><%= link_to "Profile Management", profiles_path %></li>
+							<% end %>
+
 						</ul>	
 					<ul class="nav navbar-nav navbar-right">
 							<li><%= link_to "Contact Us", contact_path %></li>

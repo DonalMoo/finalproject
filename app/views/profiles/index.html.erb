@@ -1,12 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Profiles</h1>
+<h1>All Profiles </h1>
 
 <table>
   <thead>
     <tr>
       <th>Firstname</th>
       <th>Lastname</th>
+      <th>Has Tin whistle</th>
+      <th>Has Bodhran</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +18,8 @@
       <tr>
         <td><%= profile.firstname %></td>
         <td><%= profile.lastname %></td>
+        <td><%= profile.has_tin %></td>
+        <td><%= profile.has_bod %></td>
         <td><%= link_to 'Show', profile %></td>
         <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
         <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
