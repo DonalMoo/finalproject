@@ -4,6 +4,15 @@
 		<p>The latest tutorials</p>
 		</div>
 	</div>
+	<div class="row">
+	     <% @tutorials.each do |tutorial| %>
+              <div class="col-md-2">
+                <h3><%= tutorial.title %></h3>
+                <%= image_tag(tutorial.image_url, :class => "list_image") %>
+                </div>
+         <% end %>
+    </div>
+
 
 	<div class="row">
 		<div class="col-md-2">
