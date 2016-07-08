@@ -15,7 +15,7 @@
           <img class="img-circle" src="/assets/bodhome.jpg" width="140" height="140">
           <h2>Tutorials</h2>
           <p>A range of tutorials, for begineers first lesson, to experienced advanced players advanced techniques. Instruments include, Tin whistle, Bodhran, Fiddle, Guitar, Mandolin and Banjo</p>
-          <p><a class="btn btn-default" href="#" role="button">View Tutorials &raquo;</a></p>
+          <%= link_to "View Tutorials", tutorials_path, :class =>"btn btn-default" %>
         </div>
 
         <!-- /.col-lg-4 -->
@@ -36,6 +36,19 @@
       </div><!-- /.row -->
 
 
+      <!-- START THE FEATURETTES -->
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Our latest video - <span class="text-muted">Bodhran Tutorial for Beginners</span></h2>
+          <p class="lead">A perfect tutorial for bodhran beginners, by Conor Long. Learn to play your first basic strokes and accompany tunes with Conor Long who takes you through everything from holding the instrument correctly to your first strokes to dampening and rimshots, to your first reels and jigs. It's easier than you think!</p>
+        </div>
+        <div class="col-md-5">
+         <%= video_tag('https://s3-eu-west-1.amazonaws.com/waltvideos1/Bodhran+Basics_preview.mp4', :type => "video/mp4", :size => "480x272", :controls => true) %>
+        </div>
+      </div>
 	<div class="row">
 		<div class="col-md-2">
 		</div>
