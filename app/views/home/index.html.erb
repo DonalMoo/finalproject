@@ -1,17 +1,39 @@
 <div class="row">
-	<div class="col-md-12">
-		<h1>Waltons online Tutorials</h1>
-		<p>The latest tutorials</p>
+	<div class="col-md-12 text centre">
+			<div class="jumbotron">
+				<h1>Waltons Music Online Tutorials</h1>
+			</div>
 		</div>
 	</div>
-	<div class="row">
-	     <% @tutorials.each do |tutorial| %>
-              <div class="col-md-2">
-                <h3><%= tutorial.title %></h3>
-                <%= image_tag(tutorial.image_url, :class => "list_image") %>
-                </div>
-         <% end %>
-    </div>
+
+	<!-- modified code from www.bootstrap.com -->
+
+	<div class="container marketing">
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-lg-4">
+          <img class="img-circle" src="/assets/bodhome.jpg" width="140" height="140">
+          <h2>Tutorials</h2>
+          <p>A range of tutorials, for begineers first lesson, to experienced advanced players advanced techniques. Instruments include, Tin whistle, Bodhran, Fiddle, Guitar, Mandolin and Banjo</p>
+          <p><a class="btn btn-default" href="#" role="button">View Tutorials &raquo;</a></p>
+        </div>
+
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img class="img-circle" src="/assets/instcare.jpg" width="140" height="140">
+          <h2>Instrument Care</h2>
+          <p>We’ve put together some tips on basic musical instrument care and maintenance. Not only will proper instrument care teach budding musicians responsibility, it will also ensure they stay excited and motivated to continue on their musical paths.</p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img class="img-circle" src="/assets/mandhome.jpg" width="140" height="140">
+          <h2>Getting Started</h2>
+          <p>Sign up for free to gain access to the full list of tutorials and watch previews for all available courses.</p>
+          <p><a class="btn btn-default" href="#" role="button">Sign Up&raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
 
 
 	<div class="row">
