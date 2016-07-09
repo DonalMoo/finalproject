@@ -29,9 +29,11 @@
 
               <div class="col-md-4">
                 <p class="tutorial_p"><%= tutorial.description %></p>
-                  <h4>Buy now - <%= number_to_currency(tutorial.price, unit: "€") %></h4>
-                    <div class="btn btn-default btn-md">Add to account
+                  <h4><%= number_to_currency(tutorial.price, unit: "€") %>
+                     <div class="btn btn-default btn-md">Buy Now
                     </div>
+                  </h4>
+                   
                             
                     <h4>Enter voucher number to add to account</h4>
                     <h3 id="notice"><%= notice %></h3>  

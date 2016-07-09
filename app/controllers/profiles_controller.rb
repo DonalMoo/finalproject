@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  
+  before_filter :validate_user, :only => :show 
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
   # GET /profiles
@@ -87,5 +87,10 @@ class ProfilesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
       params.require(:profile).permit(:firstname, :lastname, :user_id, :has_tin, :has_bod)
+    end
+
+    # only allow user to see their own profile unless they are an admin
+    def validate_user
+      redirect_to(root_url) unless current_user.id.to_s == params[:id] or current_user.admin?
     end
 end
