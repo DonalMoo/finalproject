@@ -17,15 +17,35 @@
               </ul>
         </div>
       </div>
-		  <div class="col-md-6">
-		  <h3>
-  		  	<strong>Profile:</strong>
-  			  <%= @profile.firstname %> <%= @profile.lastname %>
-            <h3 id="notice"><%= notice %></h3>
-		  </h3>
-        <% if @profile.has_bod %>
-          <h3>Bodhran tutorial </h3>
-          <%= video_tag('https://s3-eu-west-1.amazonaws.com/waltvideos1/Bodhran+Basics_preview.mp4', :type => "video/mp4", :size => "720x480", :controls => true) %>
+		  <div class="col-md-7">
+		     <h3>
+  		    	 <strong>Profile:</strong>
+  			     <%= @profile.firstname %> <%= @profile.lastname %>
+             <h3 id="notice"><%= notice %></h3>
+		    </h3>
+          <% if @profile.has_bod %>
+            <h3 class="text centre">Bodhran tutorial </h3>
+            <video id="videoarea" controls="controls" src=""></video>
+        </div>
+          <div class="col-md-3">
+            <ul id="playlist">
+              <h3>Bodhran Chapters</h3>
+              <li videourl="https://s3-eu-west-1.amazonaws.com/waltbodhrantut/holding+the+bodhran.mp4">Holding the Bodhran</li>
+
+              <li videourl="https://s3-eu-west-1.amazonaws.com/waltbodhrantut/holding+the+stick.mp4">Holding the stick</li>          
+
+              <li videourl="https://s3-eu-west-1.amazonaws.com/waltbodhrantut/Playing+the+bodhran.mp4">Playing the Bodhran</li>      
+
+              <li videourl="https://s3-eu-west-1.amazonaws.com/waltbodhrantut/Playing+a+Reel.mp4">Playing a Reel</li>
+
+              <li videourl="https://s3-eu-west-1.amazonaws.com/waltbodhrantut/Playing+an+advanced+reel.mp4">Playing an advanced Reel</li>
+
+              <li videourl="https://s3-eu-west-1.amazonaws.com/waltbodhrantut/Playing+a+Jig.mp4">Playing a Jig</li>
+
+              <li videourl="https://s3-eu-west-1.amazonaws.com/waltbodhrantut/Playing+a+hornpipe.mp4">Playing a Hornpipe</li>
+
+            </ul>
+          </div>
          <% end %>
       </div>
     </div>
@@ -39,4 +59,6 @@
         <% end %>
       </div>
     </div>
+
+
 

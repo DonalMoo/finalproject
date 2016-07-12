@@ -1,3 +1,26 @@
 // Place all the styles related to the profiles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#playlist {
+	padding: 20px;
+    background-color:black !important; 
+    color: grey;
+    border-radius: 15px;
+}
+
+#playlist li{
+	cursor:pointer;
+	padding:2px;
+}
+
+#playlist li:hover{
+    color:white;                        
+}
+#videoarea {
+    float:left;
+    width:640px;
+    height:480px;
+    margin:10px;    
+    border:1px solid silver;
+}

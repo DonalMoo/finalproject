@@ -12,12 +12,13 @@
         <div class ="col-md-10">
             <div class="jumbotron">
               <h1>Tutorials</h1>
-                  <h4>Choose from a wide range of tutorials available, buy or enter your voucher code to gain access to full videos</h4>
+                  <h4>Choose from a wide range of tutorials available, buy or enter your voucher code to gain access to stream full videos</h4>
             </div>
         </div>
       </div>
 
           <% @tutorials.each do |tutorial| %>
+          <!-- empty column for sidebar space -->
             <div class="row">
               <div class="col-md-2">
               </div>
@@ -33,15 +34,14 @@
                      <div class="btn btn-default btn-md">Buy Now
                     </div>
                   </h4>
-                   
-                            
+                                
                     <h4>Enter voucher number to add to account</h4>
                     <h3 id="notice"><%= notice %></h3>  
                     <%= form_for(@campaign, url: redeem_code_campaign_path(@campaign), method: :put) do |f| %>
                     <div class="field">
                     <%= text_field_tag :code %>
-                    </div>
-                    
+                    </div> 
+                    <%= f.hidden_field :tutorial_id, :value => tutorial.id %>
                     <div class="actions">
                     <%= f.submit "Redeem Code", class: "btn btn-default btn-md" %>
                     </div>

@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :validate_user, :only => :show 
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
@@ -91,6 +92,6 @@ class ProfilesController < ApplicationController
 
     # only allow user to see their own profile unless they are an admin
     def validate_user
-      redirect_to(root_url) unless current_user.id.to_s == params[:id] or current_user.admin?
+      redirect_to(signedinuserprofile_path) unless current_user.id.to_s == params[:id] or current_user.admin?
     end
 end

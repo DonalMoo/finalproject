@@ -14,3 +14,16 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(function() {
+    $("#playlist li").on("click", function() {
+        $("#videoarea").attr({
+            "src": $(this).attr("videourl"),
+            "poster": "",
+            "autoplay": "autoplay"
+        })
+    })
+    $("#videoarea").attr({
+        "src": $("#playlist li").eq(0).attr("videourl"),
+        "poster": $("#playlist li").eq(0).attr("videosposter")
+    })
+})
