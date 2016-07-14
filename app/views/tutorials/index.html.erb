@@ -30,11 +30,25 @@
 
               <div class="col-md-4">
                 <p class="tutorial_p"><%= tutorial.description %></p>
-                  <h4><%= number_to_currency(tutorial.price, unit: "€") %>
-                     <div class="btn btn-default btn-md">Buy Now
-                    </div>
-                  </h4>
-                                
+
+                    <%= form_tag tutorial_charges_path(tutorial.id) do %>
+                      <article>
+                        <% if flash[:error].present? %>
+                          <div id="error_explanation">
+                            <p><%= flash[:error] %></p>
+                          </div>
+                        <% end %>
+                        <label class="amount">
+                          <span>Amount: €5.00</span>
+                        </label>
+                      </article>
+                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                      data-description="Once off payment"
+                      data-amount="600"
+                      data-locale="auto"></script>
+                      <% end %>
+                                         
                     <h4>Enter voucher number to add to account</h4>
                     <h3 id="notice"><%= notice %></h3>  
                     <%= form_for(@campaign, url: redeem_code_campaign_path(@campaign), method: :put) do |f| %>

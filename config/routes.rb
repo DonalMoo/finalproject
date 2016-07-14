@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   resources :codes
   resources :code_mngr
   resources :profiles
-  resources :tutorials
+  
+  resources :tutorials do |tutorials|
+    resources :charges
+  end
+
+  
   devise_for :users
   get 'home/index'
   get '/signedinuserprofile' => 'profiles#signedinuserprofile'
