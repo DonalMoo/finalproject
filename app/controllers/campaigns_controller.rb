@@ -29,14 +29,13 @@ class CampaignsController < ApplicationController
     end
   end
 
-  # modified code from coupon code git documentation - https://github.com/baxang/coupon-code
+  # adapted code from coupon code gem documentation - https://github.com/baxang/coupon-code
   def redeem_code
     @profile = Profile.find_by_user_id(current_user.id)
-    #@tutorial = Tutorial.find_by_id(params[:id])
     msg = []
     user_code = params[:code]
     code = @campaign.codes.find_by(code: user_code)
-    @tutorial_id = params[campaign: :tutorial_id]
+    @tutorial_id = params[:campaign][:tutorial_id]
 
     puts @tutorial_id.inspect
 
@@ -53,8 +52,13 @@ class CampaignsController < ApplicationController
     end
 
     if msg.empty? && @tutorial_id == '1'
-      msg << 'Code was successfully redeemed. You now have access to this tutorial' 
+      msg << 'Code was successfully redeemed. You now have access to the Bodhran tutorial' 
       @profile.update(:has_bod => true ) 
+
+      redirect_to signedinuserprofile_path, notice: msg.join(' ')
+    elsif msg.empty? && @tutorial_id == '2'
+      msg << 'Code was successfully redeemed. You now have access to the Tin Whistle tutorial' 
+      @profile.update(:has_tin => true ) 
 
       redirect_to signedinuserprofile_path, notice: msg.join(' ')
     else

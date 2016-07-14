@@ -24,3 +24,17 @@
     margin:10px;    
     border:1px solid silver;
 }
+
+table {
+  border-collapse: separate;
+  border-spacing: 2em 1em;
+  background-color: #ddd;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px !important;
+}
