@@ -1,6 +1,6 @@
 class MessageMailer < ApplicationMailer
 
-	default from: "Waltons Online Tutorials <noreply@yourdomain.com>"
+	default from: "Waltons Online Tutorials <noreply@waltonsonline.com>"
   	default to: "Your Name <donalmooney87@gmail.com>"
 
   def new_message(message)

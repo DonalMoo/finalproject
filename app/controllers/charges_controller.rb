@@ -8,7 +8,7 @@ class ChargesController < ApplicationController
 	def new	
 	end
 
-#modified code from stripe api documentation
+	#modified code from stripe api documentation
 	def create
 
 		#created empty message string
