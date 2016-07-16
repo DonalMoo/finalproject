@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   
   devise_for :users
   get 'home/index'
+
+  #code adapted from Adriana Chis cloud application development tutorial class
   get '/signedinuserprofile' => 'profiles#signedinuserprofile'
   root :to => 'home#index'
 
@@ -17,8 +19,11 @@ Rails.application.routes.draw do
   get 'contact', to: 'messages#new', as: 'contact'
   post 'contact', to: 'messages#create'
 
+  #code adapted from coupon_code git hut repositary
   resources :campaigns, only: [:index, :create, :show, :redeem_code] do
   put 'redeem_code', on: :member
   end
+
+  get '/instrument_care' => 'instrument_care#index'
 
 end

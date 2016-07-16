@@ -10,11 +10,12 @@ class ChargesController < ApplicationController
 
 	#modified code from stripe api documentation
 	def create
-
 		#created empty message string
 		msg = []
 		@profile = Profile.find_by_user_id(current_user.id)
 		@tutorial_id = params[:tutorial_id]
+		@user = User.find_by_id(current_user.id)
+    	@tutorial = Tutorial.find_by_id(@tutorial_id)
 		  # Amount in cents
 		  @amount = 500
 
@@ -36,12 +37,16 @@ class ChargesController < ApplicationController
 
       		msg << 'Thank you for your payment! You now have access to the Bodhran tutorial'
 
+      		UserMailer.new_stripe_order(@user, @profile, @tutorial).deliver_now
+
       		redirect_to signedinuserprofile_path, notice: msg.join(' ')
     		elsif @tutorial_id == '2'
       	 
       		@profile.update(:has_tin => true ) 
 
       		msg << 'Thank you for your payment. You now have access to the Tin Whistle tutorial'
+
+      		UserMailer.new_stripe_order(@user, @profile, @tutorial).deliver_now
 
       		redirect_to signedinuserprofile_path, notice: msg.join(' ')
 		    else

@@ -3,15 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #playlist {
-	padding: 20px;
+	   padding: 20px;
     background-color:black !important; 
     color: grey;
     border-radius: 15px;
+    list-style: none;
 }
 
 #playlist li{
 	cursor:pointer;
-	padding:2px;
+	padding:3px;
 }
 
 #playlist li:hover{

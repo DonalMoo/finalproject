@@ -36,6 +36,9 @@ class CampaignsController < ApplicationController
     user_code = params[:code]
     code = @campaign.codes.find_by(code: user_code)
     @tutorial_id = params[:campaign][:tutorial_id]
+    @user = User.find_by_id(current_user.id)
+    @user_code = user_code
+    @tutorial = Tutorial.find_by_id(@tutorial_id)
 
     puts @tutorial_id.inspect
 
@@ -53,12 +56,16 @@ class CampaignsController < ApplicationController
 
     if msg.empty? && @tutorial_id == '1'
       msg << 'Code was successfully redeemed. You now have access to the Bodhran tutorial' 
-      @profile.update(:has_bod => true ) 
+      @profile.update(:has_bod => true )
+
+      UserMailer.new_tutorial_email(@user, @profile, @user_code, @tutorial).deliver_now 
 
       redirect_to signedinuserprofile_path, notice: msg.join(' ')
     elsif msg.empty? && @tutorial_id == '2'
       msg << 'Code was successfully redeemed. You now have access to the Tin Whistle tutorial' 
       @profile.update(:has_tin => true ) 
+
+      UserMailer.new_tutorial_email(@user, @profile, @user_code, @tutorial).deliver_now 
 
       redirect_to signedinuserprofile_path, notice: msg.join(' ')
     else

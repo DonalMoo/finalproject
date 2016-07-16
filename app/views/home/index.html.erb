@@ -23,7 +23,7 @@
           <img class="img-circle" src="/assets/instcare.jpg" width="140" height="140">
           <h2>Instrument Care</h2>
           <p>We’ve put together some tips on basic musical instrument care and maintenance. Not only will proper instrument care teach budding musicians responsibility, it will also ensure they stay excited and motivated to continue on their musical paths.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details</a></p>
+           <%= link_to "Instrument Care", instrument_care_path, :class =>"btn btn-default" %>
         </div><!-- /.col-lg-4 -->
 
         
@@ -46,7 +46,7 @@
           <p class="lead">A perfect tutorial for bodhran beginners, by Conor Long. Learn to play your first basic strokes and accompany tunes with Conor Long who takes you through everything from holding the instrument correctly to your first strokes to dampening and rimshots, to your first reels and jigs. It's easier than you think!</p>
         </div>
         <div class="col-md-5">
-         <%= video_tag('https://s3-eu-west-1.amazonaws.com/waltvideos1/Bodhran+Basics_preview.mp4', :type => "video/mp4", :size => "480x272", :controls => true) %>
+         <%= video_tag('https://s3-eu-west-1.amazonaws.com/waltvideos1/Bodhran+Basics_preview.mp4', :type => "video/mp4", :size => "320x240", :controls => true) %>
         </div>
       </div>
 	<div class="row">

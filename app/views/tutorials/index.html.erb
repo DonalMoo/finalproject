@@ -31,8 +31,8 @@
 
               <div class="col-md-4">
                 <p class="tutorial_p"><%= tutorial.description %></p>
-
-                     <h4>Enter voucher number or pay with card to add to account</h4>
+                  <h4>Enter voucher number or pay with card to add to account</h4>
+                    <!-- passing tutorial id with charge to assign payment to a tutorial -->
                     <%= form_tag tutorial_charges_path(tutorial.id) do %>
                       <article>
                         <% if flash[:error].present? %>
@@ -47,7 +47,7 @@
                       
                      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                       data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                      data-description="Once off payment"
+                      data-description="Once off payment for tutorial"
                       data-amount="500"
                       data-locale="auto"></script>
                       <% end %>
@@ -73,7 +73,6 @@
                     <td><%= link_to 'Edit', edit_tutorial_path(tutorial) %></td>
                     <td><%= link_to 'Destroy', tutorial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 <% end %>
-
             </div>
         <% end %>
       <% if current_user.admin? %>
