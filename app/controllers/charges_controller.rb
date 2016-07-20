@@ -40,6 +40,7 @@ class ChargesController < ApplicationController
       		UserMailer.new_stripe_order(@user, @profile, @tutorial).deliver_now
 
       		redirect_to signedinuserprofile_path, notice: msg.join(' ')
+
     		elsif @tutorial_id == '2'
       	 
       		@profile.update(:has_tin => true ) 
@@ -49,6 +50,25 @@ class ChargesController < ApplicationController
       		UserMailer.new_stripe_order(@user, @profile, @tutorial).deliver_now
 
       		redirect_to signedinuserprofile_path, notice: msg.join(' ')
+
+      		elsif msg.empty? && @tutorial_id == '3'
+		     
+		    msg << 'Thank you for your payment! You now have access to the Mandolin tutorial' 
+		    @profile.update(:has_mand => true ) 
+
+		    UserMailer.new_stripe_order(@user, @profile, @tutorial).deliver_now
+
+		    redirect_to signedinuserprofile_path, notice: msg.join(' ')
+
+		    elsif msg.empty? && @tutorial_id == '4'
+
+		    msg << 'Thank you for your payment. You now have access to the Irish Fiddle tutorial' 
+		    @profile.update(:has_fiddle => true ) 
+
+		    UserMailer.new_stripe_order(@user, @profile, @tutorial).deliver_now
+
+		    redirect_to signedinuserprofile_path, notice: msg.join(' ')
+		    
 		    else
 		      redirect_to tutorials_path, notice: msg.join(' ')
 		    end

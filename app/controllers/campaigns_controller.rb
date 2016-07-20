@@ -68,7 +68,25 @@ class CampaignsController < ApplicationController
       UserMailer.new_tutorial_email(@user, @profile, @user_code, @tutorial).deliver_now 
 
       redirect_to signedinuserprofile_path, notice: msg.join(' ')
+
+    elsif msg.empty? && @tutorial_id == '3'
+      msg << 'Code was successfully redeemed. You now have access to the Mandolin tutorial' 
+      @profile.update(:has_mand => true ) 
+
+      UserMailer.new_tutorial_email(@user, @profile, @user_code, @tutorial).deliver_now 
+
+      redirect_to signedinuserprofile_path, notice: msg.join(' ')
+
+    elsif msg.empty? && @tutorial_id == '4'
+      msg << 'Code was successfully redeemed. You now have access to the Irish Fiddle tutorial' 
+      @profile.update(:has_fiddle => true ) 
+
+      UserMailer.new_tutorial_email(@user, @profile, @user_code, @tutorial).deliver_now 
+
+      redirect_to signedinuserprofile_path, notice: msg.join(' ')
+
     else
+
       redirect_to tutorials_path, notice: msg.join(' ')
     end
   end

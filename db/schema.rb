@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714175942) do
+ActiveRecord::Schema.define(version: 20160720200311) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "title"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20160714175942) do
     t.datetime "updated_at",                 null: false
     t.boolean  "has_tin",    default: false
     t.boolean  "has_bod",    default: false
+    t.boolean  "has_mand",   default: false
+    t.boolean  "has_fiddle", default: false
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"

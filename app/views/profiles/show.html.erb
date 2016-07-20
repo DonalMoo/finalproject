@@ -28,6 +28,18 @@
               <h3>Tin Whistle Tutorial</h3>
               <li videourl="https://s3-eu-west-1.amazonaws.com/waltvideos1/Waltons+tin+whistle.mp4">Lesson 1</li>
               <% end %>
+
+              <% if @profile.has_mand %>
+              <h3>Irish Mandolin Tutorial</h3>
+              <li videourl="https://s3-eu-west-1.amazonaws.com/waltvideos1/MANDOLIN+PREVIEW.mp4">Lesson 1</li>
+              <% end %>
+
+              <% if @profile.has_fiddle %>
+              <h3>Irish Fiddle Tutorial</h3>
+              <li videourl="https://s3-eu-west-1.amazonaws.com/waltvideos1/fiddle+preview.mp4">Lesson 1</li>
+              <% end %>
+
+
             </ul>
           </div>
 		  <div class="col-md-7">

@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #playlist {
-	   padding: 20px;
+	padding: 20px;
     background-color:black !important; 
     color: grey;
     border-radius: 15px;
@@ -12,7 +12,10 @@
 
 #playlist li{
 	cursor:pointer;
-	padding:3px;
+	padding:2px;
+    list-style-position: inside;
+    list-style-image: url('play.png');
+
 }
 
 #playlist li:hover{

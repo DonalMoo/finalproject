@@ -3,8 +3,9 @@
           <div class="sidebar">
               <h3>Tutorials</h3>
                 <ul>
+                <!-- generate links for each tutorial, linking to generated id's -->
                 <% @tutorials.each do |tutorial| %>
-                  <li><%= tutorial.title %></li>
+                  <li tutorials><%= link_to tutorial.title, { controller: :tutorials, action: :index, :anchor => tutorial.title }  %>
                   <% end %>
                 </ul>
           </div>
@@ -17,14 +18,13 @@
             </div>
         </div>
       </div>
-
           <% @tutorials.each do |tutorial| %>
           <!-- empty column for sidebar space -->
-            <div class="row">
+            <div class="row" id="<%=tutorial.title%>" >
               <div class="col-md-2">
               </div>
 
-              <div class="col-md-2">
+                <div class="col-md-2">
                 <h3><%= tutorial.title %></h3>
                 <%= image_tag(tutorial.image_url, :class => "list_image") %>
               </div>
