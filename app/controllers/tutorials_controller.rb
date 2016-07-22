@@ -9,13 +9,9 @@ class TutorialsController < ApplicationController
   def index
     @tutorials = Tutorial.all
     @campaigns = Campaign.all
+    #render locals: { campaign: @campaign}
     @campaign = Campaign.find_by_id(1) 
   end
-
-  def set_campaign
-    @campaign = Campaign.find(params[:id])
-  end
-
 
   def ensure_admin
     if user_signed_in? && current_user.admin?
@@ -30,7 +26,7 @@ class TutorialsController < ApplicationController
   # GET /tutorials/1
   # GET /tutorials/1.json
   def show
-    render locals: { campaign: @campaign}
+    
   end
 
   # GET /tutorials/new

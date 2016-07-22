@@ -87,7 +87,7 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:firstname, :lastname, :user_id, :has_tin, :has_bod)
+      params.require(:profile).permit(:firstname, :lastname, :user_id, :has_tin, :has_bod, :has_mand, :has_fiddle)
     end
 
     # only allow user to see their own profile unless they are an admin

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :code_mngr
   resources :profiles
   
+  
   resources :tutorials do |tutorials|
     resources :charges
   end
@@ -19,7 +20,7 @@ Rails.application.routes.draw do
   get 'contact', to: 'messages#new', as: 'contact'
   post 'contact', to: 'messages#create'
 
-  #code adapted from coupon_code git hut repositary
+  #code adapted from coupon_code git hub repositary
   resources :campaigns, only: [:index, :create, :show, :redeem_code] do
   put 'redeem_code', on: :member
   end

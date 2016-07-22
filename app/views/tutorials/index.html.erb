@@ -19,11 +19,12 @@
         </div>
       </div>
           <% @tutorials.each do |tutorial| %>
-          <!-- empty column for sidebar space -->
+            <!-- passing tutorial title to id to generate anchor for sidebar -->
             <div class="row" id="<%=tutorial.title%>" >
+            <!-- empty column for sidebar space -->
               <div class="col-md-2">
               </div>
-
+              <!-- tutorial title and image -->
                 <div class="col-md-2">
                 <h3><%= tutorial.title %></h3>
                 <%= image_tag(tutorial.image_url, :class => "list_image") %>
@@ -50,12 +51,13 @@
                       data-description="Once off payment for tutorial"
                       data-amount="500"
                       data-locale="auto"></script>
-                      <% end %>
-                                          
-                    <%= form_for(@campaign, url: redeem_code_campaign_path(@campaign), method: :put) do |f| %>
+                      <% end %>                  
+
+                    <%= form_for(@campaign, url: redeem_code_campaign_path(tutorial.id), method: :put) do |f| %>
                     <div class="field">
                     <%= text_field_tag :code %>
-                    </div> 
+                    </div>
+                    <!-- passing tutorial.id with form submittion to assoiate code redeem with selected tutorial -->  
                     <%= f.hidden_field :tutorial_id, :value => tutorial.id %>
                     <div class="actions">
                     <%= f.submit "Redeem Code", class: "btn btn-default btn-md" %>

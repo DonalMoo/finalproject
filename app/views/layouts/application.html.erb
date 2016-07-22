@@ -8,7 +8,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
 	<!-- bootstrap navbar header -->
 	<header class="navbar navbar-inverse">
 		<div class="navbar-inner">
@@ -19,7 +18,7 @@
 						<ul class="nav navbar-nav">
 							<li><%= link_to "Home", home_index_path %></li>
 							<li><%= link_to "Tutorials", tutorials_path %></li>
-							
+			
 
 							<% if user_signed_in? %>
 							<li><%= link_to "My Profile", signedinuserprofile_path %></li>

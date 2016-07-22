@@ -32,15 +32,19 @@ class CampaignsController < ApplicationController
   # adapted code from coupon code gem documentation - https://github.com/baxang/coupon-code
   def redeem_code
     @profile = Profile.find_by_user_id(current_user.id)
+    #@campaign = Campaign.find_by_id(1)
+
+    #create empty message to append to
     msg = []
     user_code = params[:code]
     code = @campaign.codes.find_by(code: user_code)
     @tutorial_id = params[:campaign][:tutorial_id]
+
+    #get user, user code and tutorial values to pass to mailer
     @user = User.find_by_id(current_user.id)
     @user_code = user_code
     @tutorial = Tutorial.find_by_id(@tutorial_id)
 
-    puts @tutorial_id.inspect
 
     unless code
       msg << 'Code not found.'
