@@ -20,9 +20,8 @@ Rails.application.configure do
   # ActionMailer Config
   config.action_mailer.delivery_method = :smtp
 
-  # config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  # config.action_mailer.delivery_method = :smtp
-  # SMTP settings for gmail
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
   config.action_mailer.default :charset => "utf=8"
 
   config.active_record.migration_error = :page_load

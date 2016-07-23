@@ -3,8 +3,8 @@
           <h3>
             <strong>Profile:</strong>
                 <%= @profile.firstname %> <%= @profile.lastname %>
-                <h3 id="notice"><%= notice %></h3>
             </h3>
+            <!-- code modified from fiddle.js tutorial on javascript video player -->
             <!-- Sidebar only showing tutorials signed in user has access too -->
             <ul id="playlist">
               <% if @profile.has_bod %>
@@ -43,6 +43,7 @@
           </div>
 		  <div class="col-md-7">
             <h3 class="text centre">My tutorials </h3>
+            <h3 id="notice"><%= notice %></h3>
             <video id="videoarea" controls="controls" src=""></video>
         </div>
     </div>

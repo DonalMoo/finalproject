@@ -1,3 +1,4 @@
+require 'my_logger'
 class CampaignsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :ensure_admin, :only => [:show, :edit, :destroy]
@@ -7,6 +8,9 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1.json
   def index
     @campaigns = Campaign.all
+    unless current_user.admin
+      redirect_to home_index_path
+    end
   end
 
   def show
@@ -32,8 +36,7 @@ class CampaignsController < ApplicationController
   # adapted code from coupon code gem documentation - https://github.com/baxang/coupon-code
   def redeem_code
     @profile = Profile.find_by_user_id(current_user.id)
-    #@campaign = Campaign.find_by_id(1)
-
+   
     #create empty message to append to
     msg = []
     user_code = params[:code]
@@ -45,6 +48,8 @@ class CampaignsController < ApplicationController
     @user_code = user_code
     @tutorial = Tutorial.find_by_id(@tutorial_id)
 
+    #retreive the object MyLogger class
+    logger = MyLogger.instance
 
     unless code
       msg << 'Code not found.'
@@ -62,12 +67,19 @@ class CampaignsController < ApplicationController
       msg << 'Code was successfully redeemed. You now have access to the Bodhran tutorial' 
       @profile.update(:has_bod => true )
 
+      #append details to userlog.txt
+      logger.logInformation("User: " + @profile.firstname + @profile.lastname + " Has added: " + @tutorial.title + " to their profile with code: " + @user_code.to_s)  
+
       UserMailer.new_tutorial_email(@user, @profile, @user_code, @tutorial).deliver_now 
 
       redirect_to signedinuserprofile_path, notice: msg.join(' ')
+
     elsif msg.empty? && @tutorial_id == '2'
       msg << 'Code was successfully redeemed. You now have access to the Tin Whistle tutorial' 
       @profile.update(:has_tin => true ) 
+
+      #append details to userlog.txt
+      logger.logInformation("User: " + @profile.firstname + @profile.lastname + " Has added: " + @tutorial.title + " to their profile with code: " + @user_code.to_s)  
 
       UserMailer.new_tutorial_email(@user, @profile, @user_code, @tutorial).deliver_now 
 
@@ -77,22 +89,31 @@ class CampaignsController < ApplicationController
       msg << 'Code was successfully redeemed. You now have access to the Mandolin tutorial' 
       @profile.update(:has_mand => true ) 
 
+      #append details to userlog.txt
+      logger.logInformation("User: " + @profile.firstname + @profile.lastname + " Has added: " + @tutorial.title + " to their profile with code: " + @user_code.to_s)
+
       UserMailer.new_tutorial_email(@user, @profile, @user_code, @tutorial).deliver_now 
 
       redirect_to signedinuserprofile_path, notice: msg.join(' ')
+
+      #append order details to userlog.txt
+      logger.logInformation("User: " + @profile.firstname + @profile.lastname + " Has added: " + @tutorial.title + " to their profile with code: " + @user_code.to_s)  
 
     elsif msg.empty? && @tutorial_id == '4'
       msg << 'Code was successfully redeemed. You now have access to the Irish Fiddle tutorial' 
       @profile.update(:has_fiddle => true ) 
 
+      #append details to userlog.txt
+      logger.logInformation("User: " + @profile.firstname + @profile.lastname + " Has added: " + @tutorial.title + " to their profile with code: " + @user_code.to_s)
+
       UserMailer.new_tutorial_email(@user, @profile, @user_code, @tutorial).deliver_now 
 
-      redirect_to signedinuserprofile_path, notice: msg.join(' ')
+      redirect_to signedinuserprofile_path, notice: msg.join(' ')  
 
     else
-
       redirect_to tutorials_path, notice: msg.join(' ')
     end
+    
   end
 
   def ensure_admin

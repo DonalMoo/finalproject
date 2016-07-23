@@ -1,14 +1,16 @@
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :validate_user, :only => :show 
+  before_filter :validate_user, :only => :show
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
   # GET /profiles
   # GET /profiles.json
   def index
     @profiles = Profile.all
+    redirect_to(signedinuserprofile_path) unless current_user.id.to_s == params[:id] or current_user.admin?
   end
 
+  #method to redirect user to their profile or create a new profile if none exists, taken from Adriana chis class tutorials
   def signedinuserprofile
     profile = Profile.find_by_user_id(current_user.id)
     if profile.nil?
@@ -37,6 +39,7 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
+    redirect_to(signedinuserprofile_path) unless current_user.id.to_s == params[:id] or current_user.admin?
   end
 
   # POST /profiles
@@ -90,8 +93,16 @@ class ProfilesController < ApplicationController
       params.require(:profile).permit(:firstname, :lastname, :user_id, :has_tin, :has_bod, :has_mand, :has_fiddle)
     end
 
-    # only allow user to see their own profile unless they are an admin
+    # only allow user to see their own profile unless they are an admin and redirect user to tutorials page if they do not have a tutorial 
     def validate_user
-      redirect_to(signedinuserprofile_path) unless current_user.id.to_s == params[:id] or current_user.admin?
-    end
+      @profile = Profile.find_by_user_id(current_user.id)
+
+      if @profile.has_bod or @profile.has_tin or @profile.has_mand or @profile.has_fiddle
+         redirect_to(signedinuserprofile_path) unless current_user.id.to_s == params[:id] or current_user.admin?
+
+      else
+        redirect_to(tutorials_path, notice: 'Your profile is empty! Purchase a tutorial or enter a voucher code to add tutorials to your account') 
+      end
+    end 
+
 end

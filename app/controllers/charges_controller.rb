@@ -1,3 +1,4 @@
+require 'my_logger'
 class ChargesController < ApplicationController
 	before_filter :authenticate_user!
 
@@ -16,6 +17,10 @@ class ChargesController < ApplicationController
 		@tutorial_id = params[:tutorial_id]
 		@user = User.find_by_id(current_user.id)
     	@tutorial = Tutorial.find_by_id(@tutorial_id)
+
+    	#retreive the object MyLogger class
+    	logger = MyLogger.instance
+
 		  # Amount in cents
 		  @amount = 500
 
@@ -37,6 +42,9 @@ class ChargesController < ApplicationController
 
       		msg << 'Thank you for your payment! You now have access to the Bodhran tutorial'
 
+      		#append details to userlog.txt
+      		logger.logInformation("User: " + @profile.firstname + @profile.lastname + " Has added: " + @tutorial.title + " to their profile via stripe payment")
+
       		UserMailer.new_stripe_order(@user, @profile, @tutorial).deliver_now
 
       		redirect_to signedinuserprofile_path, notice: msg.join(' ')
@@ -47,6 +55,9 @@ class ChargesController < ApplicationController
 
       		msg << 'Thank you for your payment. You now have access to the Tin Whistle tutorial'
 
+      		#append details to userlog.txt
+      		logger.logInformation("User: " + @profile.firstname + @profile.lastname + " Has added: " + @tutorial.title + " to their profile via stripe payment")
+
       		UserMailer.new_stripe_order(@user, @profile, @tutorial).deliver_now
 
       		redirect_to signedinuserprofile_path, notice: msg.join(' ')
@@ -54,7 +65,10 @@ class ChargesController < ApplicationController
       		elsif msg.empty? && @tutorial_id == '3'
 		     
 		    msg << 'Thank you for your payment! You now have access to the Mandolin tutorial' 
-		    @profile.update(:has_mand => true ) 
+		    @profile.update(:has_mand => true )
+
+		    #append details to userlog.txt
+      		logger.logInformation("User: " + @profile.firstname + @profile.lastname + " Has added: " + @tutorial.title + " to their profile via stripe payment") 
 
 		    UserMailer.new_stripe_order(@user, @profile, @tutorial).deliver_now
 
@@ -65,14 +79,16 @@ class ChargesController < ApplicationController
 		    msg << 'Thank you for your payment. You now have access to the Irish Fiddle tutorial' 
 		    @profile.update(:has_fiddle => true ) 
 
+		    #append details to userlog.txt
+      		logger.logInformation("User: " + @profile.firstname + @profile.lastname + " Has added: " + @tutorial.title + " to their profile via stripe payment")
+
 		    UserMailer.new_stripe_order(@user, @profile, @tutorial).deliver_now
 
 		    redirect_to signedinuserprofile_path, notice: msg.join(' ')
 		    
 		    else
 		      redirect_to tutorials_path, notice: msg.join(' ')
-		    end
-		 
+		    end	 
 
 		rescue Stripe::CardError => e
 		  flash[:error] = e.message
