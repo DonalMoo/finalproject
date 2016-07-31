@@ -1,38 +1,43 @@
 
 <div class="row">
     <div class="col-md-12">
-      <h1>Coupon code generator</h1>
+      <h1>Voucher code batch generator</h1>
     </div>
   </div>
 
 <div class="row">
   <div class="col-md-4">
-<h3><%= link_to "Current Code Banks", campaigns_path %></h3>
+    <div class="well">
+    <h3><%= link_to "Current Code Banks", campaigns_path %></h3>
+  </div>
   </div>
 
 <div class="col-md-8">
-<h3>Enter a name for new batch of voucher codes, currently set to generate 1000 codes</h3>
+  <div class="well">
+  <h3>Enter a name for new batch of voucher codes, currently set to generate 1000 codes</h3>
 
-<%= form_for(campaign) do |f| %>
-  <% if campaign.errors.any? %>
-    <div id="error_explanation">
-      <h4><%= pluralize(campaign.errors.count, "error") %> prohibited this campaign from being saved:</h4>
-
-      <ul>
-        <% campaign.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
+  <%= form_for(campaign) do |f| %>
+    <% if campaign.errors.any? %>
+      <div id="error_explanation">
+        <h4><%= pluralize(campaign.errors.count, "error") %> prohibited this campaign from being saved:</h4>     
+        <ul>
+          <% campaign.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
+      <div class="field">
+        <%= f.label :title, 'Voucher Bank Title' %>
+        <%= f.text_field :title %>
+      </div>
 
-  <div class="actions">
-    <%= f.submit %>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
   </div>
-<% end %>
 </div>
+</div>
+

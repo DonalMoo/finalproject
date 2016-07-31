@@ -50,8 +50,11 @@
                      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                       data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
                       data-description="Once off payment for tutorial"
+                      data-image="/assets/logo.png"
                       data-amount="500"
-                      data-locale="auto"></script>
+                      data-locale="auto"
+                      data-currency="eur">
+                      </script>
                       <% end %>                  
                     <!-- form to redeem code, passing tutorial id to ensure code is checked against correct campaign -->
                     <%= form_for(@campaign, url: redeem_code_campaign_path(tutorial.id), method: :put) do |f| %>

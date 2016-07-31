@@ -1,6 +1,6 @@
 class Code < ActiveRecord::Base
 
-  #modified code from coupon code gem documentation
+  #adapted code from coupon code gem documentation - https://github.com/baxang/coupon-gen
   belongs_to :campaign
   validates :code, presence: true, uniqueness: { scope: :campaign }
   validate -> (r) { errors.add(:code, 'Code is not valid.') if CouponCode.validate(r.code).nil? }

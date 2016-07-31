@@ -8,7 +8,6 @@ class ProfilesController < ApplicationController
   def index
     @profiles = Profile.all
     redirect_to(signedinuserprofile_path) unless current_user.id.to_s == params[:id] or current_user.admin?
-    @users = User.all
   end
 
   #method to redirect user to their profile or create a new profile if none exists, taken from Adriana chis class tutorials

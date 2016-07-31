@@ -11,7 +11,7 @@ class ChargesController < ApplicationController
 
 	#modified code from stripe api documentation
 	def create
-		#created empty message string
+		#created empty array to store messages
 		msg = []
 		@profile = Profile.find_by_user_id(current_user.id)
 		@tutorial_id = params[:tutorial_id]
@@ -36,54 +36,44 @@ class ChargesController < ApplicationController
 		    :description => 'Rails Stripe customer',
 		    :currency    => 'eur'
 		  )
-
+		  	#update users profile to allow access to the tutorial with id shown
 			if @tutorial_id == '1' 
       		@profile.update(:has_bod => true ) 
-
       		msg << 'Thank you for your payment! You now have access to the Bodhran tutorial'
-
       		#append details to userlog.txt
       		logger.logInformation("User: " + @profile.firstname + @profile.lastname + " Has added: " + @tutorial.title + " to their profile via stripe payment")
-
+      		#pass objects user, profile, and tutorial to usermailer to add to mail and deliver mail now
       		UserMailer.new_stripe_order(@user, @profile, @tutorial).deliver_now
-
       		redirect_to signedinuserprofile_path, notice: msg.join(' ')
 
+      		#update users profile to allow access to the tutorial with id shown
     		elsif @tutorial_id == '2'
-      	 
       		@profile.update(:has_tin => true ) 
-
       		msg << 'Thank you for your payment. You now have access to the Tin Whistle tutorial'
-
       		#append details to userlog.txt
       		logger.logInformation("User: " + @profile.firstname + @profile.lastname + " Has added: " + @tutorial.title + " to their profile via stripe payment")
-
+      		#pass objects user, profile, and tutorial to usermailer to add to mail and deliver mail now
       		UserMailer.new_stripe_order(@user, @profile, @tutorial).deliver_now
-
       		redirect_to signedinuserprofile_path, notice: msg.join(' ')
 
-      		elsif msg.empty? && @tutorial_id == '3'
-		     
+      		#update users profile to allow access to the tutorial with id shown
+      		elsif msg.empty? && @tutorial_id == '3'	     
 		    msg << 'Thank you for your payment! You now have access to the Mandolin tutorial' 
 		    @profile.update(:has_mand => true )
-
 		    #append details to userlog.txt
       		logger.logInformation("User: " + @profile.firstname + @profile.lastname + " Has added: " + @tutorial.title + " to their profile via stripe payment") 
-
+      		#pass objects user, profile, and tutorial to usermailer to add to mail and deliver mail now
 		    UserMailer.new_stripe_order(@user, @profile, @tutorial).deliver_now
-
 		    redirect_to signedinuserprofile_path, notice: msg.join(' ')
 
+		    #update users profile to allow access to the tutorial with id shown
 		    elsif msg.empty? && @tutorial_id == '4'
-
 		    msg << 'Thank you for your payment. You now have access to the Irish Fiddle tutorial' 
 		    @profile.update(:has_fiddle => true ) 
-
 		    #append details to userlog.txt
       		logger.logInformation("User: " + @profile.firstname + @profile.lastname + " Has added: " + @tutorial.title + " to their profile via stripe payment")
-
+      		#pass objects user, profile, and tutorial to usermailer to add to mail and deliver mail now
 		    UserMailer.new_stripe_order(@user, @profile, @tutorial).deliver_now
-
 		    redirect_to signedinuserprofile_path, notice: msg.join(' ')
 		    
 		    else

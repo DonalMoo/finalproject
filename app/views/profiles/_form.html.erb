@@ -16,32 +16,32 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :firstname %><br>
+    <%= f.label :firstname, 'First Name' %><br>
     <%= f.text_field :firstname, class: "form-control"  %>
   </div>
   <div class="form-group">
-    <%= f.label :lastname %><br>
+    <%= f.label :lastname, 'Last Name' %><br>
     <%= f.text_field :lastname, class: "form-control"  %>
   </div>
 
   <% if current_user.admin? %>
     <div class="field">
-    <%= f.label :has_tin %><br>
+    <%= f.label :has_tin, 'Tin Whistle' %><br>
     <%= f.radio_button :has_tin, "0" %> No
     <%= f.radio_button :has_tin, "1" %> Yes
   </div>
     <div class="field">
-    <%= f.label :has_bod %><br>
+    <%= f.label :has_bod, 'Bodhran' %><br>
     <%= f.radio_button :has_bod, "0" %> No
     <%= f.radio_button :has_bod, "1" %> Yes
   </div>
     <div class="field">
-    <%= f.label :has_mand %><br>
+    <%= f.label :has_mand, 'Mandolin' %><br>
     <%= f.radio_button :has_mand, "0" %> No
     <%= f.radio_button :has_mand, "1" %> Yes
   </div>
     <div class="field">
-    <%= f.label :has_fiddle %><br>
+    <%= f.label :has_fiddle, 'Fiddle' %><br>
     <%= f.radio_button :has_fiddle, "0" %> No
     <%= f.radio_button :has_fiddle, "1" %> Yes
   </div>
