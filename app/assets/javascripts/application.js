@@ -15,6 +15,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+// modified code from http://jsfiddle.net/Barzi/Jzs6B/9/. @author Maziar Barzi [Accessed 12 July 2016]
 $(function() {
     $("#playlist li").on("click", function() {
         $("#videoarea").attr({

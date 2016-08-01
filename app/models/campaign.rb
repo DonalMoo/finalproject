@@ -1,6 +1,7 @@
 class Campaign < ActiveRecord::Base
 
-  #code adapted from coupon code gem documentation
+  #adapted code from coupon code gem documentation - https://github.com/baxang/coupon-gen
+  #@author Sanghyun Park [Accessed 25 June 2016]
   DEFAULT_MAX_CODE = 1000
   has_many :codes,  dependent: :delete_all
 

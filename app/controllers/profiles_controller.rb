@@ -98,7 +98,8 @@ class ProfilesController < ApplicationController
       @profile = Profile.find_by_user_id(current_user.id)
 
       if @profile.has_bod or @profile.has_tin or @profile.has_mand or @profile.has_fiddle
-         redirect_to(signedinuserprofile_path) unless current_user.id.to_s == params[:id] or current_user.admin?
+         redirect_to(signedinuserprofile_path) unless current_user.id.to_s == params[:id] or 
+         current_user.admin?
 
       else
         redirect_to(tutorials_path, notice: 'Your profile is empty! Purchase a tutorial or enter a voucher code to add tutorials to your account') 
