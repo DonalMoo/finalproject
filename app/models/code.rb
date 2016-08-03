@@ -1,6 +1,6 @@
 class Code < ActiveRecord::Base
 
-  #adapted code from coupon code gem documentation - https://github.com/baxang/coupon-gen
+  #Code from coupon code gem documentation - https://github.com/baxang/coupon-gen
   #@author Sanghyun Park [Accessed 25 June 2016]
   belongs_to :campaign
   validates :code, presence: true, uniqueness: { scope: :campaign }

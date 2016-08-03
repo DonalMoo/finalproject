@@ -35,7 +35,7 @@ class CampaignsController < ApplicationController
     end
   end
 
-  # adapted code from coupon code gem documentation - https://github.com/baxang/coupon-gen
+  # Modified code from coupon code gem documentation - https://github.com/baxang/coupon-gen
   def redeem_code
     @profile = Profile.find_by_user_id(current_user.id) 
     #create empty array to append msg's to

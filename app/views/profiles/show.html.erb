@@ -4,7 +4,6 @@
             <strong>Profile:</strong>
                 <%= @profile.firstname %> <%= @profile.lastname %>
             </h3>
-            <!-- code modified from fiddle.js tutorial on javascript video player -->
             <!-- Sidebar only showing tutorials signed in user has access too -->
             <ul id="playlist">
               <% if @profile.has_bod %>

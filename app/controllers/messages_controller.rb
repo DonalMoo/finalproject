@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
-	
+#modified code from https://matharvard.ca/posts/2014/jan/11/contact-form-in-rails-4/[Accessed,26th June 2016]
+#@author Mat Harvard 	
 	  def new
     	@message = Message.new
     end
