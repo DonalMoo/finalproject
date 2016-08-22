@@ -11,9 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks 
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 
 // modified code from http://jsfiddle.net/Barzi/Jzs6B/9/. @author Maziar Barzi [Accessed 12 July 2016]
@@ -28,3 +26,38 @@ $(function() {
         "src": $("#playlist li").eq(0).attr("videourl")
     })
 })
+
+
+$(function() {
+
+    if(screen.width < 479) { 
+    // do any 480 width stuff here, or simply do nothing
+
+    } 
+
+    else {
+
+    var $videoarea   = $("#videoarea"), 
+        $window    = $(window),
+        offset     = $videoarea.offset(),
+        topPadding = 30;
+
+    $window.scroll(function() {
+        if ($window.scrollTop() > offset.top) {
+            $videoarea.stop().animate({
+                marginTop: $window.scrollTop() - offset.top + topPadding
+            });
+        } else {
+            $videoarea.stop().animate({
+                marginTop: 0
+            });
+        }
+    });
+
+}
+    
+});
+
+
+
+
