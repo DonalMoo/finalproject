@@ -12,12 +12,14 @@
   <table class="code-list">
   <thead>
   <tr>
+    <th>No:</th>
     <th>Code</th>
     <th>Redeemed Time</th>
   </tr>
   </thead>
   <% campaign.codes.each do |code| %>
     <tr>
+      <td><%= code.id %></td>
       <td><code class="<%= 'redeemed' if code.redeemed? %>"><%= code.code %></code></td>
       <td><%= time_ago_in_words code.redeemed_at if code.redeemed? %></td>
     </tr>
